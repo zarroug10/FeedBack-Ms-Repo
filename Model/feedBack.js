@@ -10,13 +10,13 @@ const FeedBack = mysql.createPool({
 
 const FeedBackSchema = `
 CREATE TABLE IF NOT EXISTS Feedbacks (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    userId INT NOT NULL,
-    message TEXT NOT NULL,
-    incidentId INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (incidentId) REFERENCES incidents(id) ON DELETE CASCADE
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  userId INT NOT NULL,
+  value INT NOT NULL CHECK (value >= 0 AND value <= 5),
+  incidentId INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (incidentId) REFERENCES incidents(id) ON DELETE CASCADE
 );
 `;
 
